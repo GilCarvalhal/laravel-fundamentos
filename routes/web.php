@@ -19,5 +19,13 @@ Route::get('/contact', function () {
 });
 
 Route::get('/produtos', function () {
-    return view('products');
+
+    $busca = request("search");
+    // EX: /produtos?search=camisa
+    return view('products', ["busca" => $busca]);
+});
+
+// ? torna o parâmetro opcional (= null)
+Route::get('/produtos_teste/{id?}', function ($id = null) {
+    return view('product', ["id" => $id]);
 });
